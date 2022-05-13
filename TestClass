@@ -1,0 +1,32 @@
+public class TestClass{
+public void test1(String browser) throws Exception{
+WebDriver driver=WebDriverFactory.get(browser);
+driver.navigate().to("https://osa-web.t-cg.co.uk/qatest");
+clickOnNewsLink();
+Log.assertThat(verifyNewsLetter(),"Test case is passed","Test case is not passed");
+}
+
+
+
+@FindBy(css="/news")
+WebElement newLink;
+
+public void clickOnNewsLink() throws Exception{
+
+newLink.click();
+Log.message("News Link is clickek");
+}
+
+public Boolean verifyNewsLetter() throws Exception{
+boolean Status=false;
+if(newLink.isDisplayed()){
+Status=  true;
+Log.message("News letter is verified");
+}
+else {
+Status= false;
+Log.message("News letter is not verified");
+}
+return Status;
+}
+}
